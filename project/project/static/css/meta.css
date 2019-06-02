@@ -1,0 +1,84 @@
+.flex-row {
+  display : flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display : flex;
+  flex-direction : column;
+}
+
+.to-right {
+  margin-left: auto;
+  float : right;
+}
+
+.border-bottom-box {
+  border-bottom : 1px solid lightgrey;
+  padding : 5px 0;
+}
+
+p.border-bottom-box  {
+  margin-bottom : 0;
+}
+
+.double-border-bottom-box {
+  border-bottom : 3px double lightgrey;
+  padding : 5px 0;
+}
+
+.double-border-top {
+  padding : 0;
+  border-top : 3px double lightgrey;
+}
+
+ul.errorlist {
+  padding-left : 0;
+  color : red;
+}
+
+.green {
+  color : #28a745
+}
+
+.red {
+  color : #dc3545;
+}
+
+.margin-bottom {
+  margin-bottom : 10px;
+}
+
+.margin-top {
+  margin-top : 10px;
+}
+
+.clickable {
+  cursor : pointer;
+}
+
+.no_hover {
+  cursor : default !important;
+}
+
+.text-center {
+  text-align : center;
+}
+
+.all-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.radius_cinquante {
+  border-radius : 50%;
+  border : 1px solid lightgrey;
+}
+
+.red_border {
+  border : 1px solid red;
+}
+
+.grey_style {
+  color : grey;
+}
