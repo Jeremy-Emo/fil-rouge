@@ -1,0 +1,33 @@
+{% extends "global/html.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="col">
+  <div class="card">
+    <div class="card-header">
+      <div class="header-icon"><i class="fas fa-address-card"></i></div><h2>Créer mon compte</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" class="flex-column" role="form" action="/auth/create" id="form-create-account">
+          {% csrf_token %}
+          <input type="text" name="username" placeholder="Utilisateur" value="{% if username %}{{username}}{% endif %}" required>
+          <input type="password" name="password" placeholder="Mot de passe" required>
+          <input type="email" name="mail" placeholder="Adresse e-mail" value="{% if mail %}{{mail}}{% endif %}" required>
+          <div>
+            <input type="submit" value="Créer mon compte" class="btn btn-info" />
+            <a href="/auth/login" class="btn btn-info connecting-button">Se connecter</a>
+          </div>
+      </form>
+      {% for error in errors %}
+          <p>{{error}}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block moreCSS %}
+  <link rel="stylesheet" href="{% static "css/auth.css" %}">
+{% endblock %}

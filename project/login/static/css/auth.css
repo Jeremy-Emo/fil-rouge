@@ -1,0 +1,53 @@
+#forgot_link {
+    margin: 10px 10% 10px 15%;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 14px;
+    float: right;
+}
+
+.header-icon {
+  height: 50px;
+  width: 50px;
+  background-color: #2f98a9;
+  color: white;
+  margin-right: 10px;
+  font-size: 28px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: bottom;
+  line-height: 50px;
+}
+
+.card-header h2 {
+  display : inline-block;
+}
+
+#form-login input:not([type=submit]),
+#form-create-account input:not([type=submit]),
+#form-edit-account input:not([type=submit]) {
+  width : 80%;
+  margin : 10px 10%;
+  border-radius : 4px;
+  border : 1px solid lightgrey;
+  padding : 8px 12px;
+}
+
+#form-login input[type=submit],
+#form-create-account input[type=submit],
+#form-edit-account input[type=submit] {
+  width : 200px;
+  margin : 10px 10%;
+}
+
+.bloc input:not([type=submit]) {
+  border-radius : 4px;
+  border : 1px solid lightgrey;
+  padding : 8px 12px;
+  margin-bottom : 10px;
+}
+
+.bloc {
+  width : 100%;
+  margin-bottom : 25px;
+}

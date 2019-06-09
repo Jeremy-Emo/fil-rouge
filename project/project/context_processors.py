@@ -6,3 +6,9 @@ def version(request):
 
 def img_path(request):
     return {'IMG_PATH': os.environ['API_IMG_PATH']}
+
+
+def appli_info(request):
+    return {
+        'TITRE': "Fil Rouge"
+    }

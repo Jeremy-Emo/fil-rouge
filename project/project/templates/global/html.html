@@ -19,11 +19,47 @@
   <body>
 
     <div id="menu" class="d-none d-lg-block flex-row">
-
+      <ul class="flex-row">
+        {% if user.is_authenticated %}
+          <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
+          <li class="to-right" id="menu_account">Mon compte</li>
+          <ul id="submenu_account">
+            <a href="/auth/edit"><li>Mes informations</li></a>
+            <a href="/auth/logout"><li>Se déconnecter</li></a>
+          </ul>
+        {% else %}
+          <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
+          <a href="/auth/create" class="to-right dropdown-item connect-width"><li>Créer un compte / Se connecter</li></a>
+        {% endif %}
+      </ul>
     </div>
 
     <div id="menu-mobile" class="d-lg-none">
-
+      <h1>{{TITRE}}</h1>
+      <i class="fas fa-bars to-right toggle_menu"></i>
+    </div>
+    <div id="div-menu-mobile">
+      <div id="submenu-mobile">
+        <h1>{{TITRE}}</h1>
+        <i class="fas fa-times to-right toggle_menu"></i>
+      </div>
+      <div id="main_mobile_menu">
+        <ul class="flex-column" id="mobile_first_level">
+          <a href="/" class="dropdown-item"><li>Accueil</li></a>
+          {% if user.is_authenticated %}
+            <li id="mobile_account" class="dropdown-item">Mon compte</li>
+          {% else %}
+            <a href="/auth/create" class="dropdown-item"><li>Créer un compte</li></a>
+          {% endif %}
+        </ul>
+        <ul id="menu_mobile_account">
+          {% if user.is_authenticated %}
+          <li class="bouton_retour_mobile_direct dropdown-item">Retour</li>
+          <a href="/auth/edit"><li class="dropdown-item">Mes informations</li></a>
+          <a href="/auth/logout"><li class="dropdown-item">Se déconnecter</li></a>
+          {% endif %}
+        </ul>
+      </div>
     </div>
 
     <div id="content" class="container">
@@ -40,6 +76,7 @@
     <script type="text/javascript" src="{% static "js/popper.js" %}"></script>
     <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
     {% block moreJS %}{% endblock %}
   </body>
 </html>

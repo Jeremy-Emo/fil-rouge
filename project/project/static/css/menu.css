@@ -51,7 +51,7 @@
 }
 
 #menu .width-fix {
-  max-width: 150px;
+  max-width: 180px;
 }
 
 #menu li.title-li {
@@ -145,4 +145,8 @@
 
 #menu_mobile_account, #menu_mobile_reroll {
   display : none;
+}
+
+.connect-width {
+  width : 300px;
 }

@@ -1,0 +1,27 @@
+{% extends "global/html.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="col">
+  <div class="card">
+    <div class="card-header">
+      <div class="header-icon"><i class="fas fa-address-card"></i></div><h2>Se connecter</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" class="flex-column" role="form" action="/auth/login" id="form-login">
+          {% csrf_token %}
+          <input type="text" name="username" placeholder="Utilisateur" required>
+          <input type="password" name="password" placeholder="Mot de passe" required>
+          <input type="submit" value="Connexion" class="btn btn-info" />
+      </form>
+      <a href="/auth/password_reset/" id="forgot_link">Mot de passe oublié ?</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block moreCSS %}
+  <link rel="stylesheet" href="{% static "css/auth.css" %}">
+{% endblock %}

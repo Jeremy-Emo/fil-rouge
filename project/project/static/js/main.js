@@ -57,13 +57,5 @@ $( document ).ready(function() {
         var origin = $(this).attr('id');
         $('[aria-describedby="'+origin+'"]').popover('hide');
     });
-    $('body').on('click', '.toggle_menu', function(){
-        $('#div-menu-mobile').toggle("slide");
-        if($('#mobile_first_level').is(":hidden")){
-          $('#mobile_first_level').show();
-          $('#menu_mobile_reroll').hide();
-          $('#menu_mobile_account').hide();
-        }
-    });
 
 });

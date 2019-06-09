@@ -1,0 +1,31 @@
+{% extends "global/html.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="col">
+  <div class="card">
+    <div class="card-header">
+      <div class="header-icon"><i class="fas fa-address-card"></i></div><h2>Editer mon compte</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" class="flex-column" role="form" action="/auth/edit" id="form-edit-account">
+          {% csrf_token %}
+          <input type="text" name="username" placeholder="Utilisateur" value="{{user.username}}" required>
+          <input type="email" name="mail" placeholder="Adresse e-mail" value="{{user.email}}" required>
+          <input type="text" name="first_name" placeholder="Prénom" value="{{user.first_name}}">
+          <input type="text" name="last_name" placeholder="Nom" value="{{user.last_name}}">
+          <input type="submit" value="Modifier mon compte" class="btn btn-info" />
+      </form>
+      {% for error in errors %}
+          <p>{{error}}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block moreCSS %}
+  <link rel="stylesheet" href="{% static "css/auth.css" %}">
+{% endblock %}
