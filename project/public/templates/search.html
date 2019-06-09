@@ -1,0 +1,67 @@
+{% extends "global/html.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="bloc">
+  <div class="col" style="padding:0">
+    <div class="card togglable">
+      <div class="card-header">
+        <div class="header-icon"><i class="fas fa-search"></i></div><h2>Rechercher un film</h2><i class="fas fa-angle-up"></i>
+      </div>
+      <div class="card-body">
+        <p>Nom du film : <input type="text" id="movie_name"></p>
+        <p>
+          Trier par :
+          <select id="tri">
+            <option value="popularity.desc">Plus populaire</option>
+            <option value="popularity.asc">Moins populaire</option>
+            <option value="release_date.desc">Plus récent</option>
+            <option value="release_date.asc">Plus ancien</option>
+          </select>
+        </p>
+        <p><input type="submit" value="Rechercher" class="btn btn-info" id="goSearch" /></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="right-text"><span id="prev" data-page="0">&lt;&lt; Précédent</span> | <span id="next" data-page="2">Suivant &gt;&gt;</span></p>
+<div id="movies_container" class="row">
+  {% for info in json.results %}
+    <div class="movie_box col-sm-12 col-md-6 col-lg-4">
+      <a class="movie_desc_link" href="#">
+      {% if info.poster_path %}
+        <img class="movie_img" src="{{IMG_PATH}}{{info.poster_path}}" alt="{{info.title}}">
+      {% else %}
+        <img class="movie_img" src="{% static "img/movies/default.png" %}" alt="{{info.title}}">
+      {% endif %}
+      </a>
+      <p>{{info.title}}</p>
+    </div>
+
+  {% endfor %}
+</div>
+
+<div style="display:none;" id="create_movie_box">
+  <div class="movie_box col-sm-12 col-md-6 col-lg-4">
+    <a class="movie_desc_link" href="#">
+      <img class="movie_img" src="" alt="">
+    </a>
+    <p></p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block moreCSS %}
+  <link rel="stylesheet" href="{% static "css/home.css" %}">
+  <link rel="stylesheet" href="{% static "css/search.css" %}">
+{% endblock %}
+
+{% block moreJS %}
+  <script type="text/javascript">
+    var result_number = {{json.total_pages}};
+  </script>
+  <script type="text/javascript" src="{% static "js/search.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+#prev, #next {
+  color : #2f98a9;
+  cursor : pointer;
+}
+
+#prev:hover, #next:hover {
+  text-decoration : underline;
+}

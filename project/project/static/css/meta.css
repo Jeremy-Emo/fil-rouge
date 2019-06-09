@@ -82,3 +82,7 @@ ul.errorlist {
 .grey_style {
   color : grey;
 }
+
+.right-text {
+  text-align: right;
+}

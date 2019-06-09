@@ -21,5 +21,6 @@ from public import views
 urlpatterns = [
     path('', views.index),
     path('auth/', include('login.urls')),
-    path('admin/', admin.site.urls),
+    path('films/', include('public.urls')),
+    path('superuserofdeath/', admin.site.urls),
 ]

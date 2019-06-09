@@ -22,9 +22,13 @@
       <ul class="flex-row">
         {% if user.is_authenticated %}
           <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
+          <a href="/films/recherche"><li>Films</li></a>
           <li class="to-right" id="menu_account">Mon compte</li>
           <ul id="submenu_account">
             <a href="/auth/edit"><li>Mes informations</li></a>
+            {% if user.is_superuser %}
+              <a href="/superuserofdeath"><li>Administration</li></a>
+            {% endif %}
             <a href="/auth/logout"><li>Se déconnecter</li></a>
           </ul>
         {% else %}
@@ -46,6 +50,7 @@
       <div id="main_mobile_menu">
         <ul class="flex-column" id="mobile_first_level">
           <a href="/" class="dropdown-item"><li>Accueil</li></a>
+            <a href="/films/recherche" class="dropdown-item"><li>Films</li></a>
           {% if user.is_authenticated %}
             <li id="mobile_account" class="dropdown-item">Mon compte</li>
           {% else %}
@@ -56,6 +61,9 @@
           {% if user.is_authenticated %}
           <li class="bouton_retour_mobile_direct dropdown-item">Retour</li>
           <a href="/auth/edit"><li class="dropdown-item">Mes informations</li></a>
+          {% if user.is_superuser %}
+            <a href="/superuserofdeath"><li class="dropdown-item">Administration</li></a>
+          {% endif %}
           <a href="/auth/logout"><li class="dropdown-item">Se déconnecter</li></a>
           {% endif %}
         </ul>
