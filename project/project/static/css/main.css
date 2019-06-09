@@ -66,3 +66,16 @@ td, th {
   padding : 3px 5px;
   border-bottom : 1px solid lightgrey;
 }
+
+#content {
+  width : 1024px;
+  margin : 40px auto;
+  margin-bottom : 100px;
+}
+
+@media screen and (max-width: 1023px) {
+  #content {
+    width : 100%;
+    margin-top : 80px;
+  }
+}

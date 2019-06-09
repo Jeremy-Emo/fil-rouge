@@ -1,5 +1,26 @@
 {% extends "global/html.html" %}
+{% load static %}
 
 {% block content %}
+  <div class="row">
 
+    {% for info in json.results %}
+      <div class="movie_box col-sm-12 col-md-6 col-lg-4">
+        <a class="movie_desc_link" href="#">
+        {% if info.poster_path %}
+          <img class="movie_img" src="{{IMG_PATH}}{{info.poster_path}}" alt="{{info.title}}">
+        {% else %}
+          <img class="movie_img" src="{% static "img/movies/default.png" %}" alt="{{info.title}}">
+        {% endif %}
+        </a>
+        <p>{{info.title}}</p>
+      </div>
+
+    {% endfor %}
+
+  </div>
+{% endblock %}
+
+{% block moreCSS %}
+  <link rel="stylesheet" href="{% static "css/home.css" %}">
 {% endblock %}
