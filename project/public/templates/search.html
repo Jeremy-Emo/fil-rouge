@@ -25,12 +25,12 @@
     </div>
   </div>
 </div>
-
+<p class="right-text"><span id="nbre_results">{{json.total_results}}</span> films trouvés.</p>
 <p class="right-text"><span id="prev" data-page="0">&lt;&lt; Précédent</span> | <span id="next" data-page="2">Suivant &gt;&gt;</span></p>
 <div id="movies_container" class="row">
   {% for info in json.results %}
     <div class="movie_box col-sm-12 col-md-6 col-lg-4">
-      <a class="movie_desc_link" href="#">
+      <a class="movie_desc_link" href="/films/detail/{{info.id}}">
       {% if info.poster_path %}
         <img class="movie_img" src="{{IMG_PATH}}{{info.poster_path}}" alt="{{info.title}}">
       {% else %}

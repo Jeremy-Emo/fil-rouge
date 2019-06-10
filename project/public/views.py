@@ -1,6 +1,11 @@
 from django.shortcuts import render
 import requests, os, datetime
 
+# Fonction de log - dev
+import logging
+logger = logging.getLogger(__name__)
+#logger.error('test')
+
 # Home
 def index(request):
     url = os.environ['API_BASE_URL'] + "discover/movie"
@@ -46,5 +51,23 @@ def search(request):
     except:
         json = {'results' : None}
     return render(request, 'search.html', {
+        'json' : json
+    })
+
+
+#Détail
+def detail(request, id):
+    url = os.environ['API_BASE_URL'] + "movie/" + str(id)
+    payload = {
+        'api_key' : os.environ['API_KEY'],
+        'language' : 'fr-FR',
+    }
+    req = requests.get(url, params=payload)
+    try:
+        json = req.json()
+    except:
+        json = "test"
+
+    return render(request, 'detail.html', {
         'json' : json
     })

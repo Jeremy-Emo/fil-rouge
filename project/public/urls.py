@@ -7,4 +7,5 @@ from . import ajax
 urlpatterns = [
     path('recherche', views.search, name='search'),
     path('search', ajax.search, name='ajax_search'),
+    path('detail/<int:id>/', views.detail, name='detail'),
 ]

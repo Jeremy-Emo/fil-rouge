@@ -56,7 +56,7 @@ def search(request):
                 liste = {
                     'poster_path' : img,
                     'title' : result["title"],
-                    'link' : ""
+                    'link' : "/films/detail/" + str(result["id"])
                 }
                 films.append(liste)
 
@@ -64,7 +64,8 @@ def search(request):
             json_data = json.dumps({
                 "success": True,
                 "films": films,
-                "pages": res["total_pages"]
+                "pages": res["total_pages"],
+                "nbre_results" : res["total_results"],
             })
         except:
             json_data = json.dumps({

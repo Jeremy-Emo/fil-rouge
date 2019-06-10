@@ -51,6 +51,7 @@ function sendSearch(searchString, order, page){
         html += $("#create_movie_box").html();
       });
       $("#movies_container").html(html);
+      $("#nbre_results").text(data.nbre_results);
       result_number = data.pages;
     } else {
       popErrorMessage(data.error_message);
