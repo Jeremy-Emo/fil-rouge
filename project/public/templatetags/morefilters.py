@@ -20,7 +20,9 @@ def parse_time(time_string):
     try:
         minutes = int(time_string) % 60
         hours = int(int(time_string) / 60)
-        return str(hours) + "h" + str(minutes)
+        if len(str(minutes)) < 2:
+            minutes = "0" + str(minutes)
+        return str(hours) + "h " + str(minutes) + "min"
     except ValueError:
         return None
 
