@@ -53,6 +53,14 @@ ul.errorlist {
   margin-top : 10px;
 }
 
+.margin-right {
+  margin-right : 10px;
+}
+
+.margin-left {
+  margin-left : 10px;
+}
+
 .clickable {
   cursor : pointer;
 }
@@ -85,4 +93,16 @@ ul.errorlist {
 
 .right-text {
   text-align: right;
+}
+
+.float-left {
+  float : left;
+}
+
+.padding_for_p {
+  padding : 0px 10px;
+}
+
+.is_block {
+  display : block;
 }

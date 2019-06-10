@@ -1,0 +1,4 @@
+.detail_box {
+  display : flex;
+  flex-direction : row;
+}

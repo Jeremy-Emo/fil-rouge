@@ -1,10 +1,30 @@
 {% extends "global/html.html" %}
 {% load static %}
+{% load morefilters %}
 
 {% block content %}
   <div class="row">
 
     {% if json %}
+    <div class="bloc">
+      <div class="col" style="padding:0">
+        <div class="card togglable">
+          <div class="card-header">
+            <div class="header-icon"><i class="fas fa-search"></i></div><h2>{{json.title}}</h2><i class="fas fa-angle-up"></i>
+          </div>
+          <div class="card-body">
+            <div class="detail_box">
+              <img src="{{IMG_PATH}}{{json.poster_path}}" alt="{{json.title}}" class="is_block">
+              <div class="info_box">
+                <p class="padding_for_p">{{json.overview}}</p>
+                <p class="padding_for_p">Date de sortie : {{json.release_date|parse_date}}</p>
+                <p class="padding_for_p">Durée : {{json.runtime|parse_time}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       {{json}}
     {% else %}
       <p>Impossible de récupérer les données de l'API.</p>
