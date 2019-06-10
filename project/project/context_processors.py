@@ -10,5 +10,5 @@ def img_path(request):
 
 def appli_info(request):
     return {
-        'TITRE': "Fil Rouge"
+        'TITRE': os.environ['TITRE']
     }
