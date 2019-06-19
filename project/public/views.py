@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 import requests, os, datetime
 from public.models import *
 
@@ -87,3 +88,17 @@ def detail(request, id):
         'commentaries' : commentaries,
         'error_message' : error_message,
     })
+
+
+#Contact
+def contact(request):
+    if request.method == "POST":
+        text = request.POST.get('contact')
+        if request.user.is_authenticated:
+            user = request.user
+        else:
+            user = None
+        Contact.objects.create(user_id=user, text=text)
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'contact.html', {})

@@ -23,6 +23,7 @@
         {% if user.is_authenticated %}
           <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
           <a href="/films/recherche"><li>Films</li></a>
+          <a href="/films/contact"><li>Contact</li></a>
           <li class="to-right" id="menu_account">Mon compte ({{user.get_username}})</li>
           <ul id="submenu_account">
             <a href="/auth/edit"><li>Mes informations</li></a>
