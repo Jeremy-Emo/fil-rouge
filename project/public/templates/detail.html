@@ -51,7 +51,7 @@
                 {% for com in commentaries %}
                   <div class="commentary_box">
                     <p>{{com.text}}</p>
-                    <p class="right-text">Noté {{com.note}} / 5 le {{com.created_at|date:"d-m-Y"}}</p>
+                    <p class="right-text">Noté {{com.note}} / 5 le {{com.created_at|date:"d-m-Y"}} par {{com.user_id}}</p>
                   </div>
                 {% endfor %}
               </div>

@@ -6,36 +6,32 @@ $( document ).ready(function() {
     var searchString = $("#movie_name").val();
     var order = $("#tri").find(":selected").val();
     var page = $(this).attr("data-page");
-    sendSearch(searchString, order, page);
-    updatePrevAndNext("prev");
+    sendSearch(searchString, order, page, "prev");
   });
   $("body").on('click', "#next", function(){
     var searchString = $("#movie_name").val();
     var order = $("#tri").find(":selected").val();
     var page = $(this).attr("data-page");
-    sendSearch(searchString, order, page);
-    updatePrevAndNext("next");
+    sendSearch(searchString, order, page, "next");
   });
 
   $("body").on("change", "#tri", function(){
     var searchString = $("#movie_name").val();
     var page = 1;
     var order = $(this).find(":selected").val();
-    sendSearch(searchString, order, page);
-    updatePrevAndNext("none");
+    sendSearch(searchString, order, page, "none");
   });
 
   $("body").on("click", "#goSearch", function(){
     var searchString = $("#movie_name").val();
     var page = 1;
     var order = $("#tri").find(":selected").val();
-    sendSearch(searchString, order, page);
-    updatePrevAndNext("none");
+    sendSearch(searchString, order, page, "none");
   });
 
 });
 
-function sendSearch(searchString, order, page){
+function sendSearch(searchString, order, page, update){
   var url = "/films/search";
   $.post( url, {
     searchString : searchString,
@@ -53,6 +49,7 @@ function sendSearch(searchString, order, page){
       $("#movies_container").html(html);
       $("#nbre_results").text(data.nbre_results);
       result_number = data.pages;
+      updatePrevAndNext(update);
     } else {
       popErrorMessage(data.error_message);
     }
@@ -60,12 +57,13 @@ function sendSearch(searchString, order, page){
 }
 
 function checkPrevAndNext(){
-  if($("#prev").attr("data-page") == 0 || $("#prev").attr("data-page") >= result_number){
+  if($("#prev").attr("data-page") == 0){
     $("#prev").hide();
   } else {
     $("#prev").show();
   }
-  if($("#next").attr("data-page") == 0 || $("#next").attr("data-page") >= result_number ){
+
+  if($("#next").attr("data-page") >= result_number ){
     $("#next").hide();
   } else {
     $("#next").show();
