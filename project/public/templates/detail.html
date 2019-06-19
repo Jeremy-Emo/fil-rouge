@@ -6,25 +6,59 @@
   <div class="row">
 
     {% if json %}
-    <div class="bloc">
-      <div class="col" style="padding:0">
-        <div class="card togglable">
-          <div class="card-header">
-            <div class="header-icon"><i class="fas fa-search"></i></div><h2>{{json.title}}</h2><i class="fas fa-angle-up"></i>
-          </div>
-          <div class="card-body">
-            <div class="detail_box">
-              <img src="{{IMG_PATH}}{{json.poster_path}}" alt="{{json.title}}" class="is_block">
-              <div class="info_box">
-                <p class="padding_for_p">{{json.overview}}</p>
-                <p class="padding_for_p">Date de sortie : {{json.release_date|parse_date}}</p>
-                <p class="padding_for_p">Durée : {{json.runtime|parse_time}}</p>
+      <div class="bloc">
+        <div class="col" style="padding:0">
+          <div class="card togglable">
+            <div class="card-header">
+              <div class="header-icon"><i class="fas fa-search"></i></div><h2>{{json.title}}</h2><i class="fas fa-angle-up"></i>
+            </div>
+            <div class="card-body">
+              <div class="detail_box">
+                <img src="{{IMG_PATH}}{{json.poster_path}}" alt="{{json.title}}" class="is_block">
+                <div class="info_box">
+                  <p class="padding_for_p">{{json.overview}}</p>
+                  <p class="padding_for_p">Date de sortie : {{json.release_date|parse_date}}</p>
+                  <p class="padding_for_p">Durée : {{json.runtime|parse_time}}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+
+      <div class="bloc">
+        <div class="col" style="padding:0">
+          <div class="card togglable">
+            <div class="card-header">
+              <div class="header-icon"><i class="fas fa-envelope"></i></div><h2>Commentaires</h2><i class="fas fa-angle-up"></i>
+            </div>
+            <div class="card-body">
+              <div class="post_commentary">
+                {% if error_message %}
+                  <p class="no_margin">{{error_message}}</p>
+                {% else %}
+                  <p>Poster un commentaire :</p>
+                  <form action="/films/detail/{{json.id}}/" method="post">
+                    {% csrf_token %}
+                    <textarea id="commentary" name="commentary" rows="8" cols="80"></textarea>
+                    <p>Note : <input type="number" name="note" value="5" min="0" max="5"></p>
+                    <input type="submit" value="Envoyer" class="btn btn-info">
+                  </form>
+                {% endif %}
+              </div>
+              <div class="get_commentaries">
+                {% for com in commentaries %}
+                  <div class="commentary_box">
+                    <p>{{com.text}}</p>
+                    <p class="right-text">Noté {{com.note}} / 5 le {{com.created_at|date:"d-m-Y"}}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

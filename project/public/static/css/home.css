@@ -18,3 +18,8 @@
 .movie_img {
   max-width : 100%;
 }
+
+.movie_title_home {
+  height : 50px;
+  text-align : center;
+}

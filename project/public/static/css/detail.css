@@ -8,3 +8,18 @@
     flex-direction : column;
   }
 }
+
+.post_commentary {
+  border-bottom : 1px solid lightgrey;
+  padding-bottom : 20px;
+}
+
+.commentary_box {
+  padding: 10px;
+  background-color: #d3d3d32e;
+  margin: 5px 0px;
+}
+
+.commentary_box > p {
+  margin : 0;
+}

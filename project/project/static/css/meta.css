@@ -106,3 +106,7 @@ ul.errorlist {
 .is_block {
   display : block;
 }
+
+.no_margin {
+  margin : 0;
+}

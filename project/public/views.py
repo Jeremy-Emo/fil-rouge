@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import requests, os, datetime
+from public.models import *
 
 # Fonction de log - dev
 import logging
@@ -57,6 +58,11 @@ def search(request):
 
 #Détail
 def detail(request, id):
+    if request.method == "POST" and not Commentaries.objects.filter(movie_id=id, user_id=request.user).exists():
+        commentary = request.POST.get('commentary')
+        note = request.POST.get('note')
+        Commentaries.objects.create(user_id=request.user, text=commentary, movie_id=id, note=note)
+
     url = os.environ['API_BASE_URL'] + "movie/" + str(id)
     payload = {
         'api_key' : os.environ['API_KEY'],
@@ -68,6 +74,16 @@ def detail(request, id):
     except:
         json = "test"
 
+    commentaries = Commentaries.objects.filter(movie_id=id).order_by('-created_at')
+
+    if Commentaries.objects.filter(movie_id=id, user_id=request.user).exists():
+        error_message = "Vous avez déjà noté ce film."
+    else:
+        error_message = False
+
+
     return render(request, 'detail.html', {
-        'json' : json
+        'json' : json,
+        'commentaries' : commentaries,
+        'error_message' : error_message,
     })
