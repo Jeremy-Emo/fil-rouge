@@ -9,4 +9,3 @@ for model in apps.get_app_config('public').get_models():
         admin.site.register(model, eval(model.__name__ + "Admin") )
     except:
         admin.site.register(model, None)
-        pass
