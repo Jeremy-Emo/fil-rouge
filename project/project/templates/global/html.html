@@ -51,7 +51,7 @@
         <ul class="flex-column" id="mobile_first_level">
           <a href="/" class="dropdown-item"><li>Accueil</li></a>
             <a href="/films/recherche" class="dropdown-item"><li>Films</li></a>
-              <a href="/films/contact" class="dropdown-item"><li>Contact</li></a>
+            <a href="/films/contact" class="dropdown-item"><li>Contact</li></a>
           {% if user.is_authenticated %}
             <li id="mobile_account" class="dropdown-item">Mon compte ({{user.get_username}})</li>
           {% else %}

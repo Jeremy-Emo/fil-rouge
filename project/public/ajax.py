@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import requests, os, datetime, json
 
+from public.models import *
+
 # Fonction de log - dev
 import logging
 logger = logging.getLogger(__name__)
@@ -66,6 +68,31 @@ def search(request):
                 "films": films,
                 "pages": res["total_pages"],
                 "nbre_results" : res["total_results"],
+            })
+        except:
+            json_data = json.dumps({
+                "success": False,
+                "error_message": "Une erreur est survenue."
+            })
+        return HttpResponse(json_data, content_type="application/json")
+    else:
+        return Http404()
+
+
+@csrf_exempt
+def add_favorite(request):
+    if request.is_ajax():
+        movie_id = request.POST.get('movie_id')
+        try:
+            if Favorites.objects.filter(user_id=request.user, movie_id=movie_id).exists():
+                Favorites.objects.get(user_id=request.user, movie_id=movie_id).delete()
+                message = "Le film a bien été supprimé des favoris."
+            else:
+                Favorites.objects.create(user_id=request.user, movie_id=movie_id)
+                message = "Le film a bien été ajouté aux favoris."
+            json_data = json.dumps({
+                "success": True,
+                "message": message
             })
         except:
             json_data = json.dumps({

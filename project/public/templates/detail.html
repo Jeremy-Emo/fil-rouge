@@ -19,6 +19,9 @@
                   <p class="padding_for_p">{{json.overview}}</p>
                   <p class="padding_for_p">Date de sortie : {{json.release_date|parse_date}}</p>
                   <p class="padding_for_p">Durée : {{json.runtime|parse_time}}</p>
+                  {% if user.is_authenticated %}
+                    <p class="padding_for_p"><input type="submit" value="Ajouter aux favoris" class="btn btn-info" id="add_fav" data-id="{{json.id}}" /></p>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -73,4 +76,8 @@
 {% block moreCSS %}
   <link rel="stylesheet" href="{% static "css/home.css" %}">
   <link rel="stylesheet" href="{% static "css/detail.css" %}">
+{% endblock %}
+
+{% block moreJS %}
+  <script type="text/javascript" src="{% static "js/detail.js" %}"></script>
 {% endblock %}
