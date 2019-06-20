@@ -20,10 +20,10 @@
 
     <div id="menu" class="d-none d-lg-block flex-row">
       <ul class="flex-row">
+        <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
+        <a href="/films/recherche"><li>Films</li></a>
+        <a href="/films/contact"><li>Contact</li></a>
         {% if user.is_authenticated %}
-          <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
-          <a href="/films/recherche"><li>Films</li></a>
-          <a href="/films/contact"><li>Contact</li></a>
           <li class="to-right" id="menu_account">Mon compte ({{user.get_username}})</li>
           <ul id="submenu_account">
             <a href="/auth/edit"><li>Mes informations</li></a>
@@ -33,7 +33,6 @@
             <a href="/auth/logout"><li>Se déconnecter</li></a>
           </ul>
         {% else %}
-          <a href="/"><li class="title-li"><h1>{{TITRE}}</h1></li></a>
           <a href="/auth/create" class="to-right dropdown-item connect-width"><li>Créer un compte / Se connecter</li></a>
         {% endif %}
       </ul>
@@ -52,6 +51,7 @@
         <ul class="flex-column" id="mobile_first_level">
           <a href="/" class="dropdown-item"><li>Accueil</li></a>
             <a href="/films/recherche" class="dropdown-item"><li>Films</li></a>
+              <a href="/films/contact" class="dropdown-item"><li>Contact</li></a>
           {% if user.is_authenticated %}
             <li id="mobile_account" class="dropdown-item">Mon compte ({{user.get_username}})</li>
           {% else %}

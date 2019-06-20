@@ -77,7 +77,9 @@ def detail(request, id):
 
     commentaries = Commentaries.objects.filter(movie_id=id).order_by('-created_at')
 
-    if Commentaries.objects.filter(movie_id=id, user_id=request.user).exists():
+    if not request.user.is_authenticated:
+        error_message = "Vous devez être connecté pour noter ce film."
+    elif Commentaries.objects.filter(movie_id=id, user_id=request.user).exists():
         error_message = "Vous avez déjà noté ce film."
     else:
         error_message = False
