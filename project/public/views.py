@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.contrib.auth.decorators import login_required
 import requests, os, datetime
 from public.models import *
 
@@ -84,11 +85,17 @@ def detail(request, id):
     else:
         error_message = False
 
+    favorites = Favorites.objects.filter(user_id=request.user)
+    favoris = []
+    for fav in favorites:
+        favoris.append(fav.movie_id)
+
 
     return render(request, 'detail.html', {
         'json' : json,
         'commentaries' : commentaries,
         'error_message' : error_message,
+        'favoris' : favoris,
     })
 
 
@@ -104,3 +111,29 @@ def contact(request):
         return HttpResponseRedirect('/')
     else:
         return render(request, 'contact.html', {})
+
+
+#Favoris
+@login_required
+def favoris(request):
+    favorites = Favorites.objects.filter(user_id=request.user)
+    favoris = []
+    for fav in favorites:
+        try:
+            url = os.environ['API_BASE_URL'] + "movie/" + str(fav.movie_id)
+            payload = {
+                'api_key' : os.environ['API_KEY'],
+                'language' : 'fr-FR',
+            }
+            req = requests.get(url, params=payload)
+            json = req.json()
+            liste = {
+                'id' : json["id"],
+                'nom' : json["title"],
+            }
+            favoris.append(liste)
+        except:
+            pass
+    return render(request, 'favoris.html', {
+        'favoris' : favoris,
+    })

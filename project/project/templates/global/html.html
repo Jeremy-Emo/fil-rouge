@@ -27,6 +27,7 @@
           <li class="to-right" id="menu_account">Mon compte ({{user.get_username}})</li>
           <ul id="submenu_account">
             <a href="/auth/edit"><li>Mes informations</li></a>
+            <a href="/films/favoris"><li>Mes favoris</li></a>
             {% if user.is_superuser %}
               <a href="/superuserofdeath"><li>Administration</li></a>
             {% endif %}
@@ -62,6 +63,7 @@
           {% if user.is_authenticated %}
           <li class="bouton_retour_mobile_direct dropdown-item">Retour</li>
           <a href="/auth/edit"><li class="dropdown-item">Mes informations</li></a>
+          <a href="/films/favoris"><li class="dropdown-item">Mes favoris</li></a>
           {% if user.is_superuser %}
             <a href="/superuserofdeath"><li class="dropdown-item">Administration</li></a>
           {% endif %}

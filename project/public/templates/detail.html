@@ -20,7 +20,13 @@
                   <p class="padding_for_p">Date de sortie : {{json.release_date|parse_date}}</p>
                   <p class="padding_for_p">Durée : {{json.runtime|parse_time}}</p>
                   {% if user.is_authenticated %}
-                    <p class="padding_for_p"><input type="submit" value="Ajouter aux favoris" class="btn btn-info" id="add_fav" data-id="{{json.id}}" /></p>
+                    <p class="padding_for_p">
+                      {% if json.id in favoris %}
+                        <input type="submit" value="Retirer des favoris" class="btn btn-info" id="add_fav" data-id="{{json.id}}" />
+                      {% else %}
+                        <input type="submit" value="Ajouter aux favoris" class="btn btn-info" id="add_fav" data-id="{{json.id}}" />
+                      {% endif %}
+                    </p>
                   {% endif %}
                 </div>
               </div>

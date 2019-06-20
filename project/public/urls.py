@@ -10,4 +10,5 @@ urlpatterns = [
     path('detail/<int:id>/', views.detail, name='detail'),
     path('contact/', views.contact, name='contact'),
     path('change_fav', ajax.add_favorite, name='add_favorite'),
+    path('favoris', views.favoris, name='favoris'),
 ]
