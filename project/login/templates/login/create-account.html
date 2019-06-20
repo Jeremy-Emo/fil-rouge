@@ -14,8 +14,9 @@
           <input type="text" name="username" placeholder="Utilisateur" value="{% if username %}{{username}}{% endif %}" required>
           <input type="password" name="password" placeholder="Mot de passe" required>
           <input type="email" name="mail" placeholder="Adresse e-mail" value="{% if mail %}{{mail}}{% endif %}" required>
-          <div>
+          <div class="flex-column all-center">
             <input type="submit" value="Créer mon compte" class="btn btn-info" />
+            <p>OU</p>
             <a href="/auth/login" class="btn btn-info connecting-button">Se connecter</a>
           </div>
       </form>

@@ -29,3 +29,8 @@
   padding : 8px 12px;
   margin-bottom : 10px;
 }
+
+.connecting-button {
+  width: 200px;
+  display : block;
+}
